@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as Chart from '../../node_modules/chart.js/src/chart.js'
+//let myChart = new Chart({...})
 
 export interface ChartContainerProps { compiler: string; framework: string; }
 
