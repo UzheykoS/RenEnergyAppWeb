@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "chart.js": "registry:dt/chart.js#0.0.0+20170110142728"
+  },
+  "globalDependencies": {
+    "chartjs": "registry:dt/chartjs#0.0.0+20160510002910",
+    "moment": "registry:dt/moment#2.11.1+20161010105546"
   }
 }
