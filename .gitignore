@@ -8,6 +8,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
-.node_modules/*
-.typings/*
-.dist/*
+node_modules/*
+typings/*
+dist/*
