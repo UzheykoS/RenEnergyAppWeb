@@ -10,10 +10,12 @@
 	"tasks": [
 		{
 			"args": [
-				"-d" 
+				"-d",
+				"--watch",
+				"--color"
 			],
 			"suppressTaskName": true,
-			"taskName": "webpack dev",
+			"taskName": "webpack_dev",
 			"isBuildCommand": true
 		},
 		{
