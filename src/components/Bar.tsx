@@ -1,8 +1,14 @@
 import React = require('react');
 import {Bar} from 'react-chartjs-2';
 
+var rawData: Array<any> = JSON.parse(require("../jsondata.json"));
+
+
+var getCurvePoints = require("cardinal-spline-js").getCurvePoints;
+var outPoints: Array<any> = getCurvePoints(rawData, 1, 1);
+
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: outPoints.map(d => { return d.toString()}),
   datasets: [
     {
       label: 'My Second dataset',
@@ -11,7 +17,7 @@ const data = {
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: outPoints
     }
   ]
 };
@@ -25,7 +31,7 @@ export class BarExample extends React.Component<any, any>{
         <Bar
           data={data}
           width={100}
-          height={50}
+          height={300}
           options={{
             maintainAspectRatio: false
           }}
