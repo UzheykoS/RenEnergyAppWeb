@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { ChartContainer } from "./components/ChartContainer";
+import { App } from "./components/App";
 
 ReactDOM.render(
-    <ChartContainer compiler="TypeScript" framework="React" />,
+    <App />,
     document.getElementById("example")
 );

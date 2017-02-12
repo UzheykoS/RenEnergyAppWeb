@@ -11,18 +11,25 @@
   "author": "Sergey Uzheyko",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^15.0.5",
-    "@types/react-dom": "^0.14.22",
-    "chart.js": "^2.4.0",
+    "@types/lodash": "^4.14.52",
+    "@types/react": "^15.0.9",
+    "@types/react-dom": "^0.14.23",
+    "cardinal-spline-js": "^2.3.6",
+    "chart.js": "^2.5.0",
+    "cubic-spline": "^1.0.4",
+    "raw-loader": "^0.5.1",
     "react": "^15.4.2",
+    "react-chartjs-2": "^2.0.0",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "@types/node": "^7.0.5",
     "commonjs": "0.0.1",
+    "json-loader": "^0.5.4",
     "moment": "^2.17.1",
     "source-map-loader": "^0.1.6",
+    "ts-loader": "^2.0.0",
     "typescript": "^2.1.5",
-    "webpack": "^2.1.0-beta.22"
+    "webpack": "2.1.0-beta.21"
   }
 }
