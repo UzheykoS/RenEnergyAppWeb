@@ -42,9 +42,6 @@ var spline = require('cubic-spline');
 var xs = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]; 
 var ys = rawData;
 
-
-debugger;
-
 let processedData = [];
 // interpolate a line at a higher resolution 
 for(var i = 0; i < 270; i++) {
@@ -78,12 +75,8 @@ const data = {
     ]
 };
 
-debugger;
-
 var getCurvePoints = require("cardinal-spline-js").getCurvePoints;
 var outPoints: Array<any> = getCurvePoints(rawData, 0.1, 25);
-
-debugger;
 
 const data2 = {
     labels: outPoints.map(d => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
