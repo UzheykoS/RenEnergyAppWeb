@@ -11,7 +11,7 @@ import { Doughnut, Line } from 'react-chartjs-2';
 var rawData: Array<any> = JSON.parse(require("../jsondata.json"));
 
 const data0 = {
-    labels: rawData[1].map(d => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
+    labels: rawData[4].map((d: any) => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
     datasets: [
         {
             label: 'My First dataset',
@@ -32,7 +32,7 @@ const data0 = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: rawData[1]
+            data: rawData[4]
         }
     ]
 };
