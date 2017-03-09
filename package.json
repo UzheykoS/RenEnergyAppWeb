@@ -6,7 +6,10 @@
   "scripts": {
     "typinst": "typings install -g",
     "devpack": "webpack -d --display-modules --progress --color",
-    "relpack": "webpack -p --display-modules --progress --color"
+    "relpack": "webpack -p --display-modules --progress --color",
+    "server": "http-server ./dist",
+    "build": "webpack",
+    "start": "npm run build -s && npm run server -s"
   },
   "author": "Sergey Uzheyko",
   "license": "ISC",
@@ -14,17 +17,21 @@
     "@types/lodash": "^4.14.52",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
+    "@types/xlsx": "0.0.32",
     "cardinal-spline-js": "^2.3.6",
     "chart.js": "^2.5.0",
     "cubic-spline": "^1.0.4",
     "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-chartjs-2": "^2.0.0",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "ts-xlsx": "0.0.9",
+    "xlsx": "^0.8.8"
   },
   "devDependencies": {
     "@types/node": "^7.0.5",
     "commonjs": "0.0.1",
+    "http-server": "^0.9.0",
     "json-loader": "^0.5.4",
     "moment": "^2.17.1",
     "source-map-loader": "^0.1.6",
