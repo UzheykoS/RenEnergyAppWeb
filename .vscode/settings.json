@@ -1,9 +1,3 @@
 {
-    "typescript.tsdk": "./node_modules/typescript/lib",
-    "taskButtons.buttons": [
-        {
-            "task": "webpack_dev",
-            "buttonLabel": "Webpack build $(beaker)"
-        }
-    ]
+    "typescript.tsdk": "./node_modules/typescript/lib"
 }

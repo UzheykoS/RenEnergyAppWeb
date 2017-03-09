@@ -1,7 +1,7 @@
 "use strict"
 declare var require: any;
 
-import * as _ from "lodash";
+// import * as _ from "lodash";
 import React = require('react');
 import ReactDOM = require('react-dom');
 import { Doughnut, Line } from 'react-chartjs-2';

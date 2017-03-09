@@ -141,7 +141,7 @@ export class Mix extends React.Component<any, any>{
   render() {
     return (
       <div>
-        <h2>Mix Example</h2>
+        <h2>Mix Example Test</h2>
         <Bar
           data={data}
           options={options}
