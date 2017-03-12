@@ -155,7 +155,8 @@ export class FileImport extends React.Component<any, IFileImportState>{
 
     return (
       <div>
-        <h2>Choose month:</h2>
+        <h2>Excel data import</h2>
+        <span>Choose month:</span>
         <select onChange={this.onMonthSelected} value={this.getMonthNameByIndex(selectedMonth)}>
           {months.map((m, i) => {
             return <option key={i}>{m}</option>;
