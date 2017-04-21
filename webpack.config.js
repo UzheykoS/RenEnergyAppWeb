@@ -1,8 +1,12 @@
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -14,27 +18,31 @@ module.exports = {
     },
 
     module: {
-        loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { 
-                test: /\.tsx?$/, 
-                loader: "ts-loader" },
+        rules: [
             {
-                test: /\.json$/,
-                loader: 'raw-loader'
+                test: /\.(scss|css)$/,
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
             },
             {
-                test: /\.scss$/,
-                loaders: ["style", "css", "sass"]
-            }
-        ],
-
-        preLoaders: [
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { test: /\.js$/, loader: "source-map-loader" }
-        ]
+                test: /\.(ts|tsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: 'ts-loader'
+            },
+            {
+                test: /\.(png|jpg)$/,
+                use: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.xml$/, loader: 'xml-loader'
+            },
+            {
+                test: /\.json$/, loader: 'raw-loader'
+            }]
     },
-
+    plugins: [
+        new HtmlWebpackPlugin({ template: 'template.ejs' }),
+        new ExtractTextPlugin("styles.css")
+    ]
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
