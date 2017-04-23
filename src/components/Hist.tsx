@@ -4,13 +4,17 @@ import { Bar } from 'react-chartjs-2';
 import { IWorkSheet, } from "xlsx";
 import * as XLSX from 'ts-xlsx';
 
+interface IMonthHistProps {
+    language: string;
+}
+
 interface IMonthHistState {
     dict?: { [key: string]: number; };
     histData?: Array<any>;
     selectedMonth?: number;
 }
 
-export class MonthHist extends React.Component<any, IMonthHistState>{
+export class MonthHist extends React.Component<IMonthHistProps, IMonthHistState>{
     constructor(props: any) {
         super(props);
         this.state = {
@@ -201,6 +205,7 @@ export class MonthHist extends React.Component<any, IMonthHistState>{
         }
 
         const { histData, selectedMonth } = this.state;
+        const { language } = this.props;
 
         const months = ["January", "April", "July", "October"];
 
@@ -208,7 +213,7 @@ export class MonthHist extends React.Component<any, IMonthHistState>{
             labels: histData.map(d => { return d.Level }),
             datasets: [
                 {
-                    label: 'Excel data',
+                    label: language == "ENG" ? "Excel data" : "Дані Excel:",
                     backgroundColor: 'rgba(255,99,132,0.2)',
                     borderColor: 'rgba(255,99,132,1)',
                     borderWidth: 1,
@@ -221,7 +226,7 @@ export class MonthHist extends React.Component<any, IMonthHistState>{
 
         return (
             <div>
-                <span>Choose month:</span>
+                <span>{language == "ENG" ? "Choose month:" : "Оберіть місяць:"}</span>
                 <select onChange={this.onMonthSelected} value={this.getMonthNameByIndex(selectedMonth)}>
                     {months.map((m, i) => {
                         return <option key={i}>{m}</option>;

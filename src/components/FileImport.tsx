@@ -5,13 +5,17 @@ import { IWorkSheet, } from "xlsx";
 import * as XLSX from 'ts-xlsx';
 var rawData: Array<any> = JSON.parse(require("../jsondata.json"))[0];
 
+interface IFileImportProps {
+    language: string;
+}
+
 interface IFileImportState {
   dict?: { [key: string]: number; };
   selectedDay?: number;
   selectedMonth?: number;
 }
 
-export class FileImport extends React.Component<any, IFileImportState>{
+export class FileImport extends React.Component<IFileImportProps, IFileImportState>{
   constructor(props: any) {
     super(props);
     this.state = {
@@ -121,6 +125,7 @@ export class FileImport extends React.Component<any, IFileImportState>{
     }
 
     const { dict, selectedDay, selectedMonth } = this.state;
+    const { language } = this.props;
 
     const months = ["January", "April", "July", "October"];
 
@@ -138,11 +143,12 @@ export class FileImport extends React.Component<any, IFileImportState>{
       }
     }
 
+    const labelChart = language == "ENG" ? "Excel data" : "Дані Excel";
     const data = {
       labels: dayData.map(d => { return d.Date }),
       datasets: [
         {
-          label: 'Excel data',
+          label: labelChart,
           backgroundColor: 'rgba(255,99,132,0.2)',
           borderColor: 'rgba(255,99,132,1)',
           borderWidth: 1,
@@ -155,14 +161,14 @@ export class FileImport extends React.Component<any, IFileImportState>{
 
     return (
       <div>
-        <h2>Excel data import</h2>
-        <span>Choose month:</span>
+        <h2>{language == "ENG" ? "Excel data import" : "Імпорт даних з Excel"}</h2>
+        <span>{language == "ENG" ? "Choose month:" : "Оберіть місяць:"}</span>
         <select onChange={this.onMonthSelected} value={this.getMonthNameByIndex(selectedMonth)}>
           {months.map((m, i) => {
             return <option key={i}>{m}</option>;
           })}
         </select>
-        <span>Choose day:</span>
+        <span>{language == "ENG" ? "Choose day:" : "Оберіть день:"}</span>
         <select onChange={this.onDaySelected} value={selectedDay}>
           {days.map((d, i) => {
             return <option key={i}>{d}</option>;        

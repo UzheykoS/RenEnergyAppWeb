@@ -11,12 +11,16 @@ function addZero(i: number) {
     return i;
 }
 
+interface IAllMonthsProps {
+    language: string;
+}
+
 interface IAllMonthsState {
     dict?: { [key: string]: number; };
     dayData?: { [key: string]: Array<any>; };
 }
 
-export class AllMonths extends React.Component<any, IAllMonthsState>{
+export class AllMonths extends React.Component<IAllMonthsProps, IAllMonthsState>{
     readFile(file: string) {
         return new Promise((resolve, reject) => {
             let rawFile = new XMLHttpRequest();
@@ -166,12 +170,13 @@ export class AllMonths extends React.Component<any, IAllMonthsState>{
         }
 
         const { dayData } = this.state;
+        const { language } = this.props;
 
         const data = {
             labels: dayData["Jul"].map(d => { return d.Date }),
             datasets: [
                 {
-                    label: 'January',
+                    label: language == "ENG" ? "January" : "Січень",
                     type: 'line',
                     data: dayData["Jan"].map(d => { return d.Value }),
                     fill: false,
@@ -183,7 +188,7 @@ export class AllMonths extends React.Component<any, IAllMonthsState>{
                     pointHoverBorderColor: '#c10000'
                 },
                 {
-                    label: 'April',
+                    label: language == "ENG" ? "April" : "Квітень",
                     type: 'line',
                     data: dayData["Apr"].map(d => { return d.Value }),
                     fill: false,
@@ -195,7 +200,7 @@ export class AllMonths extends React.Component<any, IAllMonthsState>{
                     pointHoverBorderColor: '#2c6ec7'
                 },
                 {
-                    label: 'July',
+                    label: language == "ENG" ? "July" : "Липень",
                     type: 'line',
                     data: dayData["Jul"].map(d => { return d.Value }),
                     fill: false,
@@ -207,7 +212,7 @@ export class AllMonths extends React.Component<any, IAllMonthsState>{
                     pointHoverBorderColor: '#00A651'
                 },
                 {
-                    label: 'October',
+                    label: language == "ENG" ? "October" : "Жовтень",
                     type: 'line',
                     data: dayData["Oct"].map(d => { return d.Value }),
                     fill: false,
@@ -225,7 +230,7 @@ export class AllMonths extends React.Component<any, IAllMonthsState>{
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: "All Months"
+                text: language == "ENG" ? "All Months" : "Всі місяці"
             },
             tooltips: {
                 mode: 'label'

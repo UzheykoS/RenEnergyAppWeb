@@ -7,5 +7,5 @@ require("./styles/global.scss");
 
 ReactDOM.render(
     <App />,
-    document.getElementById("example")
+    document.getElementById("root")
 );

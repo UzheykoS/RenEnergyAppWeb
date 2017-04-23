@@ -4,13 +4,17 @@ import { Bar } from 'react-chartjs-2';
 import { IWorkSheet, } from "xlsx";
 import * as XLSX from 'ts-xlsx';
 
+interface IMonthAverageProps {
+    language: string;
+}
+
 interface IMonthAverageState {
     dict?: { [key: string]: number; };
     dayData?: Array<any>;
     selectedMonth?: number;
 }
 
-export class MonthAverage extends React.Component<any, IMonthAverageState>{
+export class MonthAverage extends React.Component<IMonthAverageProps, IMonthAverageState>{
     constructor(props: any) {
         super(props);
         this.state = {
@@ -154,14 +158,15 @@ export class MonthAverage extends React.Component<any, IMonthAverageState>{
         }
 
         const { dayData, selectedMonth } = this.state;
-
+        const { language } = this.props;
+        
         const months = ["January", "April", "July", "October"];
 
         const data = {
             labels: dayData.map(d => { return d.Date }),
             datasets: [
                 {
-                    label: 'Excel data',
+                    label: language == "ENG" ? "Excel data" : "Дані Excel:",
                     backgroundColor: 'rgba(255,99,132,0.2)',
                     borderColor: 'rgba(255,99,132,1)',
                     borderWidth: 1,
@@ -174,7 +179,7 @@ export class MonthAverage extends React.Component<any, IMonthAverageState>{
 
         return (
             <div>
-                <span>Choose month:</span>
+                <span>{language == "ENG" ? "Choose month:" : "Оберіть місяць:"}</span>
                 <select onChange={this.onMonthSelected} value={this.getMonthNameByIndex(selectedMonth)}>
                     {months.map((m, i) => {
                         return <option key={i}>{m}</option>;

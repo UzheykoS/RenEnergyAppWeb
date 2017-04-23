@@ -22,11 +22,15 @@ const enum Tabs {
     Map
 }
 
+interface IContainerProps {
+    language: string;
+}
+
 interface IContainerState {
     activeTab?: Tabs;
 }
 
-export class Container extends React.Component<IContainerState, any>{
+export class Container extends React.Component<IContainerProps, IContainerState>{
     constructor(props: any) {
         super(props);
         this.state = {
@@ -41,15 +45,17 @@ export class Container extends React.Component<IContainerState, any>{
     }
 
     renderTabs() {
+        const { language } = this.props;
+
         return <ul className="tab">
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.FileImport ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.FileImport)}>FILE IMPORT</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.Mix ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.Mix)}>MIX</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.LineExample ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.LineExample)}>LINE</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.BarExample ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.BarExample)}>BAR</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.MonthAverage ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.MonthAverage)}>MONTH AVERAGE</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.AllMonths ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.AllMonths)}>ALL MONTHS</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.MonthHist ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.MonthHist)}>MONTHS HIST</a></li>
-            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.Map ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.Map)}>MAP</a></li>
+            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.FileImport ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.FileImport)}>{language == "ENG" ? "FILE IMPORT" : "ІМПОРТ ФАЙЛУ"}</a></li>
+            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.Mix ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.Mix)}>{language == "ENG" ? "MIX" : "МІКС"}</a></li>
+            {/*<li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.LineExample ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.LineExample)}>{language == "ENG" ? "LINE" : "ЛІНІЙНА"}</a></li>*/}
+            {/*<li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.BarExample ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.BarExample)}>{language == "ENG" ? "BAR" : "ГІСТРОГРАМА"}</a></li>*/}
+            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.MonthAverage ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.MonthAverage)}>{language == "ENG" ? "MONTH AVERAGE" : "СЕРЕДНЄ ЗА МІСЯЦЬ"}</a></li>
+            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.AllMonths ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.AllMonths)}>{language == "ENG" ? "ALL MONTHS" : "ВСІ МІСЯЦІ"}</a></li>
+            <li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.MonthHist ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.MonthHist)}>{language == "ENG" ? "MONTHS HIST" : "МІСЯЧНА ГІСТОГРАМА"}</a></li>
+            {/*<li><a href="javascript:void(0)" className={"tablinks " + (this.state.activeTab == Tabs.Map ? "active" : "")} onClick={ev => this.onTabSelected(ev, Tabs.Map)}>{language == "ENG" ? "MAP" : "МАПА"}</a></li>*/}
         </ul>;
     }
 
@@ -57,24 +63,24 @@ export class Container extends React.Component<IContainerState, any>{
         const { activeTab } = this.state;
         switch (activeTab) {
             case Tabs.FileImport:
-                return <FileImport />;
+                return <FileImport {...this.props}/>;
             case Tabs.Mix:
-                return <Mix />;
+                return <Mix {...this.props}/>;
             case Tabs.LineExample:
-                return <LineExample />;
+                return <LineExample {...this.props}/>;
             case Tabs.BarExample:
-                return <BarExample />;
+                return <BarExample {...this.props}/>;
             case Tabs.MonthAverage:
-                return <MonthAverage />;
+                return <MonthAverage {...this.props}/>;
             case Tabs.AllMonths:
-                return <AllMonths />;
+                return <AllMonths {...this.props}/>;
             case Tabs.MonthHist:
-                return <MonthHist />;
+                return <MonthHist {...this.props}/>;
             case Tabs.Map:
                 document.getElementById('googleMap').style.display = 'block';
                 return null;
             default:
-                return <FileImport />;
+                return <FileImport {...this.props}/>;
         }
     }
 
