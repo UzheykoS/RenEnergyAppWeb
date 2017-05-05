@@ -119,6 +119,20 @@ export class FileImport extends React.Component<IFileImportProps, IFileImportSta
     })
   }
 
+  calcTime(d: Date, offset: number = 2) {
+    // convert to msec
+    // subtract local time zone offset
+    // get UTC time in msec
+    let utc = d.getTime() - (d.getTimezoneOffset() * 60000);
+
+    // create new Date object for different city
+    // using supplied offset
+    var nd = new Date(utc + (3600000*offset));
+
+    // return time as a string
+    return nd.toLocaleString();
+}
+
   render() {
     if (!this.state || !this.state.dict) {
       return null;
@@ -145,7 +159,7 @@ export class FileImport extends React.Component<IFileImportProps, IFileImportSta
 
     const labelChart = language == "ENG" ? "Excel data" : "Дані Excel";
     const data = {
-      labels: dayData.map(d => { return d.Date }),
+      labels: dayData.map(d => { return new Date(d.Date).getHours().toString() + ":" + new Date(d.Date).getMinutes().toString() }),
       datasets: [
         {
           label: labelChart,

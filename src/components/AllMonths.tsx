@@ -146,7 +146,7 @@ export class AllMonths extends React.Component<IAllMonthsProps, IAllMonthsState>
             lowerBorder++;
         }
 
-        for (let i = lowerBorder - 1; i >= 0; i--) {
+        for (let i = lowerBorder - 1; i >= 8; i--) {// > 8 because start from 4:00 AM
             let tempTime = addZero(Math.floor(i / 2)) + ":" + (i % 2 === 0 ? "00" : "30");
             dayData.unshift({ Date: tempTime, Value: 0 })
         }
@@ -156,7 +156,7 @@ export class AllMonths extends React.Component<IAllMonthsProps, IAllMonthsState>
             upperBorder++;
         }
 
-        for (let i = upperBorder + 1; i < 48; i++) {
+        for (let i = upperBorder + 1; i < 44; i++) {// < 44 because finish with 10:00 PM
             let tempTime = addZero(Math.floor(i / 2)) + ":" + (i % 2 === 0 ? "00" : "30");
             dayData.push({ Date: tempTime, Value: 0 })
         }
