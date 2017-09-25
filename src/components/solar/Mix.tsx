@@ -26,8 +26,6 @@ for (var i = 0; i < 270; i++) {
   }
 }
 
-// let labels = 
-
 const data = {
   labels: xs,
   datasets: [
@@ -143,7 +141,7 @@ export class Mix extends React.Component<any, any>{
       <div>
         <h2>Mix Example Test</h2>
         <Bar
-          data={data}
+          data={data as any}
           options={options}
         />
       </div>
