@@ -1,7 +1,7 @@
 import React = require('react');
 import { Bar } from 'react-chartjs-2';
 
-var rawData: Array<any> = JSON.parse(require("../jsondata.json"));
+var rawData: Array<any> = JSON.parse(require("../../jsondata.json"));
 
 var getCurvePoints = require("cardinal-spline-js").getCurvePoints;
 var outPoints: Array<any> = getCurvePoints(rawData[0], 1, 1);

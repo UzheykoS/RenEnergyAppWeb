@@ -1,15 +1,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import { Mix } from "./Mix";
-import { BarExample } from "./Bar";
-import { LineExample } from "./Line";
-import { FileImport } from "./FileImport";
-import { MonthAverage } from "./MonthAverage";
-import { AllMonths } from "./AllMonths";
-import { MonthHist } from "./Hist";
-
-// import { Map } from "./Map";
+import { Mix } from "./solar/Mix";
+import { BarExample } from "./solar/Bar";
+import { LineExample } from "./solar/Line";
+import { FileImport } from "./solar/FileImport";
+import { MonthAverage } from "./solar/MonthAverage";
+import { AllMonths } from "./solar/AllMonths";
+import { MonthHist } from "./solar/Hist";
+import { Map } from "./Map";
 
 const enum Tabs {
     FileImport = 0,

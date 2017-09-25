@@ -1,17 +1,13 @@
 "use strict"
 declare var require: any;
-
-// import * as _ from "lodash";
 import React = require('react');
 import ReactDOM = require('react-dom');
 import { Doughnut, Line } from 'react-chartjs-2';
 
-// const rawData: Array<any> = require("json!../jsondata.json");
-//console.log(rawData);
-var rawData: Array<any> = JSON.parse(require("../jsondata.json"));
+var rawData: Array<any> = JSON.parse(require("../../jsondata.json"));
 
 const data0 = {
-    labels: rawData[4].map((d: any) => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
+    labels: rawData[4].map((d: any) => { return d.toString()}), 
     datasets: [
         {
             label: 'My First dataset',
@@ -49,7 +45,7 @@ for(var i = 0; i < 270; i++) {
 }
 
 const data = {
-    labels: processedData.map(d => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
+    labels: processedData.map(d => { return d.toString()}), 
     datasets: [
         {
             label: 'My First dataset',
@@ -79,7 +75,7 @@ var getCurvePoints = require("cardinal-spline-js").getCurvePoints;
 var outPoints: Array<any> = getCurvePoints(rawData[0], 0.1, 25);
 
 const data2 = {
-    labels: outPoints.map(d => { return d.toString()}), // ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'],
+    labels: outPoints.map(d => { return d.toString()}), 
     datasets: [
         {
             label: 'My First dataset',

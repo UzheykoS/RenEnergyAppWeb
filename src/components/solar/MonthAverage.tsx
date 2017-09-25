@@ -1,7 +1,5 @@
 import React = require('react');
-// import * as _ from 'lodash';
 import { Bar } from 'react-chartjs-2';
-import { IWorkSheet, } from "xlsx";
 import * as XLSX from 'ts-xlsx';
 
 interface IMonthAverageProps {

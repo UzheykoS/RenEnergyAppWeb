@@ -1,8 +1,0 @@
-{
-  "globalDependencies": {
-    "moment": "registry:dt/moment#2.11.1+20161010105546"
-  },
-  "dependencies": {
-    "xlsx": "registry:dt/xlsx#0.0.0+20170207122131"
-  }
-}
