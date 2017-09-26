@@ -34,11 +34,11 @@ export class OpenWeather extends React.Component<any, IOpenWeatherState>{
         const { forecast, current } = this.state;
 
         if (!forecast) {
-            return <Busy isVisible={true}/>;
+            return <Busy isVisible={true} />;
         }
-          
+
         const windData = {
-            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt)}), 
+            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt) }),
             datasets: [
                 {
                     label: 'Wind Speed Data',
@@ -67,7 +67,7 @@ export class OpenWeather extends React.Component<any, IOpenWeatherState>{
         };
 
         const cloudData = {
-            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt)}), 
+            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt) }),
             datasets: [
                 {
                     label: 'Cloud Index Data',
@@ -96,7 +96,7 @@ export class OpenWeather extends React.Component<any, IOpenWeatherState>{
         };
 
         const tempData = {
-            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt)}), 
+            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt) }),
             datasets: [
                 {
                     label: 'Temperature Data',
@@ -125,7 +125,7 @@ export class OpenWeather extends React.Component<any, IOpenWeatherState>{
         };
 
         const humidityData = {
-            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt)}), 
+            labels: forecast.list.map(w => { return Helper.formatUnixDate(w.dt) }),
             datasets: [
                 {
                     label: 'Humidity Data',
@@ -152,20 +152,22 @@ export class OpenWeather extends React.Component<any, IOpenWeatherState>{
                 }
             ]
         };
-        
+
         const insCalc = insolation.map((i, index) => {
             const label = insLabels[index];
             const hour = label.split(':')[0];
-            const cloudAndTime = forecast.list.map(w => {
-                return { Cloud: w.clouds.all, Time: Helper.getDateFromUnixDate(w.dt) };
-            })
+            const cloudAndTime = forecast.list.
+                filter(d => Helper.getDateFromUnixDate(d.dt).getDate() == (new Date()).getDate() + 4).
+                map(w => {
+                    return { Cloud: w.clouds.all, Time: Helper.getDateFromUnixDate(w.dt) };
+                })
             const filteredCoefs = cloudAndTime.filter(x => x.Time.getHours() <= hour);
             const k = filteredCoefs[filteredCoefs.length - 1].Cloud;
-            return i*k/100;
+            return i * (100 - k) / 100;
         });
 
         const insolationData = {
-            labels: insLabels, 
+            labels: insLabels,
             datasets: [
                 {
                     label: 'Solar Insolation Data Calculated',
