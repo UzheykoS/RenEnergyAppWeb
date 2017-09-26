@@ -27,7 +27,7 @@ for (var i = 0; i < 270; i++) {
 }
 
 const data = {
-  labels: xs,
+  labels: xs.map(x => x.toString()),
   datasets: [
   {
     label: 'Line insolation raw',
@@ -99,9 +99,6 @@ const options = {
         position: "bottom",
         gridLines: {
           display: false
-        },
-        labels: {
-          show: true
         }
       }
     ],
@@ -113,9 +110,6 @@ const options = {
         id: 'y-axis-1',
         gridLines: {
           display: false
-        },
-        labels: {
-          show: true
         }
       },
       {
@@ -125,10 +119,7 @@ const options = {
         id: 'y-axis-2',
         gridLines: {
           display: false
-        },
-        labels: {
-          show: true
-        }      
+        }   
       }
     ]
   }
@@ -141,7 +132,7 @@ export class Mix extends React.Component<any, any>{
       <div>
         <h2>Mix Example Test</h2>
         <Bar
-          data={data as any}
+          data={data}
           options={options}
         />
       </div>

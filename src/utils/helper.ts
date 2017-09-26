@@ -43,6 +43,10 @@ class Helper {
         return time;
     }
 
+    static getDateFromUnixDate(ticks: number): Date {
+        return new Date(ticks * 1000);
+    }
+
     static convertToUnixDate(date: Date): number {
         var unixtime = date.getTime()/1000;
         return unixtime;
